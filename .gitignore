@@ -131,4 +131,7 @@ temp/
 #IDE's 
 .idea
 
+# Files
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/node
