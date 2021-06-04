@@ -1,14 +1,9 @@
 const express = require('express')
+const router = require('./routes')
 
 const app = express()
 
-app.use('/', (req, res) => {
-  res.send('home')
-})
-
-app.use('/about', (req, res) => {
-  res.send('about')
-})
+app.use('/', router())
 
 app.listen(3000, () => {
   console.log('server running on http://localhost:3000')
