@@ -1,5 +1,5 @@
 function proyectHome(req, res) {
-  res.send('home')
+  res.render('index')
 }
 
 function about(req, res) {
