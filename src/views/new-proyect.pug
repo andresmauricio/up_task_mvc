@@ -3,3 +3,10 @@ extends layout
 block content
   .contenido-principal
     h1 #{title}
+
+    form(class="agregar-proyecto")
+      .campo
+        label(for="nombre") Nombre del proyecto
+        input(type="text" id="nombre" name="nombre", placeholder="Nombre del proyecto")
+      .campo.enviar
+        input(type="submit", value="Agregar" class="boton")
