@@ -7,4 +7,20 @@ html(lang="es")
     link(rel="stylesheet", href="css/app.css")
     title UpTask
   body
-    block index
+    header(class="barra") 
+      h1 UpTask - Administrador de proyectos
+      a(href="#") Cerrar Sesión
+    main(class="contenedor")
+      aside(class="contenedor-proyectos")
+        .panel.crear-proyecto
+          a(href="/nuevo-proyecto " class="boton") Nuevo Proye
+            span + 
+        .panel.lista-proyectos
+          ul(id="proyectos" class="proyectos")
+            li 
+              a(href="#") Diseño de tienda virtual
+            li 
+              a(href="#") Diseño de nuevo blog
+            li 
+              a(href="#") Diseño logotipo
+      block index
