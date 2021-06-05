@@ -7,7 +7,16 @@ function formProyect(req, res) {
 }
 
 function newProyect(req, res) {
-  console.log(req.body)
+  const { nombre } = req.body
+  let errors = []
+
+  if (!nombre) errors.push({ text: 'El nombre es obligatorio' })
+
+  if (errors.length) {
+    res.render('new-proyect', { title: 'Nuevo Proyectos', errors })
+  } else {
+    // insert db
+  }
 }
 
 module.exports = {
