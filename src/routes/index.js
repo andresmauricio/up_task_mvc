@@ -4,6 +4,6 @@ const proyectController = require('../controllers/proyectsController')
 
 module.exports = function () {
   router.use('/home', proyectController.proyectHome)
-  router.use('/about', proyectController.about)
+  router.use('/new-proyect', proyectController.newProyect)
   return router
 }

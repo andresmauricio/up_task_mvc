@@ -1,14 +1,14 @@
 function proyectHome(req, res) {
-  res.render('index')
+  res.render('index', { title: 'Home' })
 }
 
-function about(req, res) {
-  res.send('about')
+function newProyect(req, res) {
+  res.render('new-proyect', { title: 'Nuevo Proyectos' })
 }
 
 module.exports = {
   proyectHome,
-  about
+  newProyect
 }
 
 // alternative -> exports.home = (req, res) => res.send('example')
