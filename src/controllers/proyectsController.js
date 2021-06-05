@@ -7,7 +7,7 @@ function formProyect(req, res) {
 }
 
 function newProyect(req, res) {
-  res.json({status: 200})
+  console.log(req.body)
 }
 
 module.exports = {
