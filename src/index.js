@@ -2,11 +2,11 @@ const express = require('express')
 const path = require('path')
 const router = require('./routes')
 const sequelize = require('./config/database')
-
 const app = express()
 
+require('./models/Projects')
 sequelize
-  .authenticate()
+  .sync()
   .then(() => console.log('Database is connected'))
   .catch(error => console.log('Error to connected database', error))
 
