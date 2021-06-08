@@ -1,8 +1,13 @@
 const express = require('express')
 const path = require('path')
 const router = require('./routes')
+const sequelize = require('./config/database')
 
 const app = express()
+
+sequelize.authenticate()
+  .then(() => console.log('Database is connected'))
+  .catch((error) => console.log('Error to connected database', error))
 
 app.use(express.static(path.join(__dirname, './public')))
 app.use(express.urlencoded({ extended: true }))
