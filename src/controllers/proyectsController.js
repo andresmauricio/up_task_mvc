@@ -18,9 +18,7 @@ async function newProyect(req, res) {
   if (errors.length) {
     res.render('new-proyect', { title: 'Nuevo Proyectos', errors })
   } else {
-    const url = slug(nombre).toLowerCase()
-    console.log(url);
-    const project = await Project.create({ name: nombre, url })
+    const project = await Project.create({ name: nombre })
     res.redirect('/home')
   }
 }
