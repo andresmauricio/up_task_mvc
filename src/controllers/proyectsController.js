@@ -1,3 +1,5 @@
+const Project = require('../models/Projects')
+
 function proyectHome(req, res) {
   res.render('index', { title: 'Home' })
 }
@@ -6,7 +8,7 @@ function formProyect(req, res) {
   res.render('new-proyect', { title: 'Nuevo Proyectos' })
 }
 
-function newProyect(req, res) {
+async function newProyect(req, res) {
   const { nombre } = req.body
   let errors = []
 
@@ -15,7 +17,8 @@ function newProyect(req, res) {
   if (errors.length) {
     res.render('new-proyect', { title: 'Nuevo Proyectos', errors })
   } else {
-    // insert db
+    const project = await Project.create({ name: nombre })
+    res.redirect()
   }
 }
 
