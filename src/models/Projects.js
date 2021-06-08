@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../config/database')
+const slug = require('slug')
+const { nanoid } = require('nanoid')
 
 const Projects = db.define(
   'projects',
@@ -19,8 +21,8 @@ const Projects = db.define(
   {
     hooks: {
       beforeCreate(project) {
-        const url = slug(project.nombre).toLowerCase()
-        project.url = url
+        const url = slug(project.name).toLowerCase()
+        project.url = `${url}-${nanoid()}`
       }
     }
   }

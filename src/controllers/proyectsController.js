@@ -1,5 +1,4 @@
 const Project = require('../models/Projects')
-const slug = require('slug')
 
 function proyectHome(req, res) {
   res.render('index', { title: 'Home' })
