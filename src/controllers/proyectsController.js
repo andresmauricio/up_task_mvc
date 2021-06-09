@@ -1,11 +1,13 @@
 const Project = require('../models/Projects')
 
-function proyectHome(req, res) {
-  res.render('index', { title: 'Home' })
+async function proyectHome(req, res) {
+  const projects = await Project.findAll();
+  res.render('index', { title: 'Home', projects })
 }
 
-function formProyect(req, res) {
-  res.render('new-proyect', { title: 'Nuevo Proyectos' })
+ async function formProyect(req, res) {
+  const projects = await Project.findAll();
+  res.render('new-proyect', { title: 'Nuevo Proyectos', projects })
 }
 
 async function newProyect(req, res) {

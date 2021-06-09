@@ -17,10 +17,8 @@ html(lang="es")
             span + 
         .panel.lista-proyectos
           ul(id="proyectos" class="proyectos")
-            li 
-              a(href="#") Diseño de tienda virtual
-            li 
-              a(href="#") Diseño de nuevo blog
-            li 
-              a(href="#") Diseño logotipo
+            
+              each project in projects
+                li 
+                  a(href="#") #{project.name}
       block content
