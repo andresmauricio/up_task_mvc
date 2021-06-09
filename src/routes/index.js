@@ -11,5 +11,6 @@ module.exports = function () {
     body('nombre').not().isEmpty().trim().escape(),
     proyectController.newProyect
   )
+  router.get('/projects/:url', proyectController.projectByUrl)
   return router
 }
