@@ -11,6 +11,11 @@ module.exports = function () {
     body('nombre').not().isEmpty().trim().escape(),
     proyectController.newProyect
   )
+  router.post(
+    '/new-proyect/:id',
+    body('nombre').not().isEmpty().trim().escape(),
+    proyectController.updateProject
+  )
   router.get('/projects/:url', proyectController.projectByUrl)
   router.get('/projects/edit/:id', proyectController.editProject)
   return router

@@ -35,7 +35,28 @@ async function projectByUrl(req, res) {
 async function editProject(req, res) {
   const projects = await Project.findAll()
   const detailProject = await Project.findOne({ where: { id: req.params.id } })
-  res.render('new-proyect', { title: 'Editar Proyecto', projects, detailProject })
+  res.render('new-proyect', {
+    title: 'Editar Proyecto',
+    projects,
+    detailProject
+  })
+}
+
+async function updateProject(req, res) {
+  const { nombre } = req.body
+  let errors = []
+
+  if (!nombre) errors.push({ text: 'El nombre es obligatorio' })
+
+  if (errors.length) {
+    res.render('new-proyect', { title: 'Nuevo Proyectos', errors })
+  } else {
+    const project = await Project.update(
+      { name: nombre },
+      { where: { id: req.params.id } }
+    )
+    res.redirect('/home')
+  }
 }
 
 module.exports = {
@@ -43,7 +64,8 @@ module.exports = {
   newProyect,
   formProyect,
   projectByUrl,
-  editProject
+  editProject,
+  updateProject
 }
 
 // alternative -> exports.home = (req, res) => res.send('example')
