@@ -12,5 +12,6 @@ module.exports = function () {
     proyectController.newProyect
   )
   router.get('/projects/:url', proyectController.projectByUrl)
+  router.get('/projects/edit/:id', proyectController.editProject)
   return router
 }

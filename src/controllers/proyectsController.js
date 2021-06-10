@@ -32,11 +32,17 @@ async function projectByUrl(req, res) {
   res.render('task', { title: 'Proyecto ', projects, detailProject })
 }
 
+async function editProject(req, res) {
+  const projects = await Project.findAll()
+  res.render('new-proyect', { title: 'Editar Proyecto', projects })
+}
+
 module.exports = {
   proyectHome,
   newProyect,
   formProyect,
-  projectByUrl
+  projectByUrl,
+  editProject
 }
 
 // alternative -> exports.home = (req, res) => res.send('example')
