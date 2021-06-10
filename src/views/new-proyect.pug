@@ -1,15 +1,10 @@
 extends layout
-
+include mixins/create-proyect
 block content
   .contenido-principal
     h1 #{title}
     if errors
       each error in errors
         .alerta.error #{error.text}
-
-    form(action="/new-proyect" method="POST" class="agregar-proyecto")
-      .campo
-        label(for="nombre") Nombre del proyecto
-        input(type="text" id="nombre" name="nombre", placeholder="Nombre del proyecto")
-      .campo.enviar
-        input(type="submit", value="Agregar" class="boton")
+    +createProject(detailProject)
+    pre #{vardump(detailProject)}
