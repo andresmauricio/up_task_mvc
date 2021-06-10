@@ -34,7 +34,8 @@ async function projectByUrl(req, res) {
 
 async function editProject(req, res) {
   const projects = await Project.findAll()
-  res.render('new-proyect', { title: 'Editar Proyecto', projects })
+  const detailProject = await Project.findOne({ where: { id: req.params.id } })
+  res.render('new-proyect', { title: 'Editar Proyecto', projects, detailProject })
 }
 
 module.exports = {
