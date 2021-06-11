@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "watch": "webpack -w --mode development"
+    "watch": "webpack -w --mode development",
+    "start": "concurrently \"npm run dev\" \"npm run watch\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/andresmauricio/up_task_mvc#readme",
   "dependencies": {
+    "concurrently": "^6.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.11.1",
     "mysql2": "^2.2.5",
