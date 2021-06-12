@@ -59,13 +59,20 @@ async function updateProject(req, res) {
   }
 }
 
+async function deleteProject(req, res, next) {
+  const { url } = req.params
+  const project = await Project.destroy({ where: { url } })
+  res.send('Registro eliminado')
+}
+
 module.exports = {
   proyectHome,
   newProyect,
   formProyect,
   projectByUrl,
   editProject,
-  updateProject
+  updateProject,
+  deleteProject
 }
 
 // alternative -> exports.home = (req, res) => res.send('example')

@@ -18,5 +18,6 @@ module.exports = function () {
   )
   router.get('/projects/:url', proyectController.projectByUrl)
   router.get('/projects/edit/:id', proyectController.editProject)
+  router.delete('/projects/:url', proyectController.deleteProject)
   return router
 }

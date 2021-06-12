@@ -17,13 +17,14 @@ buttonDelete?.addEventListener('click', e => {
     if (result.isConfirmed) {
       const url = `${window.location.origin}/projects/${projectUrl}`
       console.log(url)
-      axios.delete(url, { params: projectUrl })
-        .then((response) => console.log(response))
-      Swal.fire(
-        'Borrado!',
-        'El proyecto se elimino correctamente',
-        'success'
-      ).then(() => (window.location.href = '/home'))
+      axios.delete(url, { params: { projectUrl } }).then(response => {
+        console.log(response)
+        Swal.fire(
+          'Borrado!',
+          'El proyecto se elimino correctamente',
+          'success'
+        ).then(() => (window.location.href = '/home'))
+      })
     }
   })
 })
