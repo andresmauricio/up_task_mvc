@@ -6,6 +6,7 @@ const { vardump } = require('./helpers')
 const app = express()
 
 require('./models/Projects')
+require('./models/Tasks')
 sequelize
   .sync()
   .then(() => console.log('Database is connected'))
