@@ -19,11 +19,11 @@ buttonDelete?.addEventListener('click', e => {
       console.log(url)
       axios.delete(url, { params: { projectUrl } }).then(response => {
         console.log(response)
-        Swal.fire(
-          'Borrado!',
-          'El proyecto se elimino correctamente',
-          'success'
-        ).then(() => (window.location.href = '/home'))
+        Swal.fire('Borrado!', 'El proyecto se elimino correctamente', 'success')
+          .then(() => (window.location.href = '/home'))
+          .catch(e =>
+            Swal.fire('Error', 'No se pudo eliminar el regístro', 'error')
+          )
       })
     }
   })

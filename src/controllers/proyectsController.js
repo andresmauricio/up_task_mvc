@@ -62,6 +62,7 @@ async function updateProject(req, res) {
 async function deleteProject(req, res, next) {
   const { url } = req.params
   const project = await Project.destroy({ where: { url } })
+  if (!project) return next()
   res.send('Registro eliminado')
 }
 
