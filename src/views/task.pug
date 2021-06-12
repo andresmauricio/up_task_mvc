@@ -3,7 +3,14 @@ extends layout
 block content
   .contenido-principal
     h1 #{title} - #{detailProject.name}
-    //- TODO formulario 
+
+    form.agregar-tarea(action=`/projects/${detailProject.url}` method="POST")
+      .campo
+        label(for="task") Tarea: 
+        input(type="text" name="task" placeholder="Nombre tarea" class="nombre-tarea")
+      .campo.enviar
+        input(type="submit", value="Agregar" class="boton nueva-tarea")
+
     //- TODO Listado pendeinte 
 
     .contenedor-acciones 
