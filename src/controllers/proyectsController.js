@@ -30,11 +30,11 @@ async function projectByUrl(req, res) {
   const detailProject = await Project.findOne({
     where: { url: req.params.url },
   })
-  const task = await Task.findAll({
+  const tasks = await Task.findAll({
     where: { projectId: detailProject.id },
     include: { model: Project }
   })
-  res.render('task', { title: 'Proyecto ', projects, detailProject, task })
+  res.render('task', { title: 'Proyecto ', projects, detailProject, tasks })
 }
 
 async function editProject(req, res) {

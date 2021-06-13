@@ -11,7 +11,20 @@ block content
       .campo.enviar
         input(type="submit", value="Agregar" class="boton nueva-tarea")
 
-    pre #{vardump(task)}
+    div.listado-pendientes
+      ul  
+        if tasks.length
+          each task in tasks
+            li.tarea 
+              p #{task.task}
+              .acciones
+                if task.state
+                  i(class="far fa-check-circle completo")
+                else 
+                  i(class="far fa-check-circle")
+                i(class="fas fa-trash")
+
+    //- pre #{vardump(tasks)}
 
     .contenedor-acciones 
       a(href=`/projects/edit/${detailProject.id}` class="boton") Editar Proyecto 
