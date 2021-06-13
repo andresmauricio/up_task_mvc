@@ -11,7 +11,7 @@ block content
       .campo.enviar
         input(type="submit", value="Agregar" class="boton nueva-tarea")
 
-    //- TODO Listado pendeinte 
+    pre #{vardump(task)}
 
     .contenedor-acciones 
       a(href=`/projects/edit/${detailProject.id}` class="boton") Editar Proyecto 

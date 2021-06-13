@@ -1,4 +1,5 @@
 const Project = require('../models/Projects')
+const Task = require('../models/Tasks')
 
 async function proyectHome(req, res) {
   const projects = await Project.findAll()
@@ -27,9 +28,13 @@ async function newProyect(req, res) {
 async function projectByUrl(req, res) {
   const projects = await Project.findAll()
   const detailProject = await Project.findOne({
-    where: { url: req.params.url }
+    where: { url: req.params.url },
   })
-  res.render('task', { title: 'Proyecto ', projects, detailProject })
+  const task = await Task.findAll({
+    where: { projectId: detailProject.id },
+    include: { model: Project }
+  })
+  res.render('task', { title: 'Proyecto ', projects, detailProject, task })
 }
 
 async function editProject(req, res) {
