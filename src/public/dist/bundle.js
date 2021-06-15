@@ -322,7 +322,7 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/project */ \"./src/public/js/modules/project.js\");\n\n\n//# sourceURL=webpack://up_task/./src/public/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/project */ \"./src/public/js/modules/project.js\");\n/* harmony import */ var _modules_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/tasks */ \"./src/public/js/modules/tasks.js\");\n\n\n\n//# sourceURL=webpack://up_task/./src/public/js/app.js?");
 
 /***/ }),
 
@@ -334,6 +334,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ \"./node_modules/sweetalert2/dist/sweetalert2.all.js\");\n/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);\n\n\nvar buttonDelete = document.getElementById('eliminar-proyecto');\nbuttonDelete === null || buttonDelete === void 0 ? void 0 : buttonDelete.addEventListener('click', function (e) {\n  var projectUrl = e.target.dataset.projectUrl;\n  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({\n    title: '¿Desear eliminar el proyecto?',\n    text: 'Un proyecto eliminado no se puede recuperar',\n    icon: 'warning',\n    showCancelButton: true,\n    confirmButtonColor: '#3085d6',\n    cancelButtonColor: '#d33',\n    confirmButtonText: 'Si, borrar',\n    cancelButtonText: 'No borrar'\n  }).then(function (result) {\n    if (result.isConfirmed) {\n      var url = \"\".concat(window.location.origin, \"/projects/\").concat(projectUrl);\n      console.log(url);\n      axios__WEBPACK_IMPORTED_MODULE_1___default().delete(url, {\n        params: {\n          projectUrl: projectUrl\n        }\n      }).then(function (response) {\n        console.log(response);\n        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire('Borrado!', 'El proyecto se elimino correctamente', 'success').then(function () {\n          return window.location.href = '/home';\n        })[\"catch\"](function (e) {\n          return sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire('Error', 'No se pudo eliminar el regístro', 'error');\n        });\n      });\n    }\n  });\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (buttonDelete);\n\n//# sourceURL=webpack://up_task/./src/public/js/modules/project.js?");
+
+/***/ }),
+
+/***/ "./src/public/js/modules/tasks.js":
+/*!****************************************!*\
+  !*** ./src/public/js/modules/tasks.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar task = document.querySelector('.listado-pendientes');\n\nif (task) {\n  task.addEventListener('click', function (e) {\n    if (e.target.classList.contains('fa-check-circle')) {\n      var icon = e.target;\n      var id = icon.parentElement.parentElement.dataset.task;\n    }\n  });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (task);\n\n//# sourceURL=webpack://up_task/./src/public/js/modules/tasks.js?");
 
 /***/ })
 
