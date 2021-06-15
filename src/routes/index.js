@@ -18,8 +18,10 @@ module.exports = function () {
     proyectController.updateProject
   )
   router.get('/projects/:url', proyectController.projectByUrl)
-  router.post('/projects/:url', taskController.addTask)
   router.get('/projects/edit/:id', proyectController.editProject)
   router.delete('/projects/:url', proyectController.deleteProject)
+
+  router.post('/projects/:url', taskController.addTask)
+  router.patch('/task/:id', taskController.updateStateTask)
   return router
 }

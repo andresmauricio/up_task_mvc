@@ -14,4 +14,15 @@ async function addTask(req, res, next) {
   res.redirect(`/projects/${url}`)
 }
 
-module.exports = { addTask }
+async function updateStateTask(req, res, next) {
+  const { id } = req.params
+  const task = await Task.findOne({ where: { id } })
+
+  task.state = task.state === 0 ? 1 : 0;
+  const result = await task.save()
+
+  if (!result) return next()
+  res.status(202).send('update')
+}
+
+module.exports = { addTask, updateStateTask }
