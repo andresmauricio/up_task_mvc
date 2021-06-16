@@ -27,5 +27,6 @@ module.exports = function () {
   router.delete('/task/:id', taskController.deleteTask)
 
   router.get('/create-account', userController.formCreateAccount)
+  router.post('/create-account', userController.createAccount)
   return router
 }
