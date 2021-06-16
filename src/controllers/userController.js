@@ -14,7 +14,7 @@ async function createAccount(req, res, next) {
       'error',
       error.errors.map(e => e.message)
     )
-    res.render('create-account', { validates: req.flash() })
+    res.render('create-account', { validates: req.flash(), email, password })
   }
 }
 

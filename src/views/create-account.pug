@@ -8,7 +8,7 @@ html(lang="es")
 
       if locals.message
         div(class="alerta")
-          each category in Object.keys(locals.message)
+          each category in Object.keys(validates)
             each error in validates[category]
               div(class=`${category}`)
                 p #{error}
@@ -17,10 +17,10 @@ html(lang="es")
       form(class="caja caja-login" id="formulario" method="POST" action="/create-account")
         div(class="campo")
           label(for="email") E-mail
-          input(type="email" name="email" placeholder="Ingresa tu email") 
+          input(type="email" name="email" placeholder="Ingresa tu email" value= email) 
         div(class="campo")
           label(for="password") Password
-          input(type="password" name="password" placeholder="Ingresa tu password") 
+          input(type="password" name="password" placeholder="Ingresa tu password" value= password) 
         div(class="campo enviar")
           input(type="submit", value="Crear Cuenta" class="boton")
         div(class="campo")
