@@ -6,9 +6,13 @@ html(lang="es")
     div(class="contenedor-formulario")
       h1 Crea tu cuenta en UpTask 
 
-      if validates
-        each validate in validates
-          p(class="error alerta") #{validate.message}
+      if locals.message
+        div(class="alerta")
+          each category in Object.keys(locals.message)
+            each error in validates[category]
+              div(class=`${category}`)
+                p #{error}
+
 
       form(class="caja caja-login" id="formulario" method="POST" action="/create-account")
         div(class="campo")

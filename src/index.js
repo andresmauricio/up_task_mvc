@@ -1,5 +1,8 @@
 const express = require('express')
 const path = require('path')
+const flash = require('connect-flash')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
 const router = require('./routes')
 const sequelize = require('./config/database')
 const { vardump } = require('./helpers')
@@ -13,8 +16,19 @@ sequelize
   .then(() => console.log('Database is connected'))
   .catch(error => console.log('Error to connected database', error))
 
+app.use(flash())
+app.use(cookieParser('key-secret'))
+app.use(
+  session({
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false
+  })
+)
+
 app.use((req, res, next) => {
   res.locals.vardump = vardump
+  res.locals.message = req.flash()
   next()
 })
 app.use(express.static(path.join(__dirname, './public')))

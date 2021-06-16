@@ -9,8 +9,12 @@ async function createAccount(req, res, next) {
   try {
     const user = await User.create({ email, password })
     res.redirect('/login')
-  } catch (error) { 
-    res.render('create-account', { validates: error.errors })
+  } catch (error) {
+    req.flash(
+      'error',
+      error.errors.map(e => e.message)
+    )
+    res.render('create-account', { validates: req.flash() })
   }
 }
 
