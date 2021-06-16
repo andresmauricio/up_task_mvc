@@ -9,8 +9,8 @@ async function createAccount(req, res, next) {
   try {
     const user = await User.create({ email, password })
     res.redirect('/login')
-  } catch (error) {
-    res.render('create-account', { validates: error.erros })
+  } catch (error) { 
+    res.render('create-account', { validates: error.errors })
   }
 }
 
