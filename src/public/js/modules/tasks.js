@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { updateTask } from './helpers/advance'
 
 const task = document.querySelector('.listado-pendientes')
 if (task) {
@@ -12,6 +13,7 @@ if (task) {
       axios.patch(url, { id }).then(response => {
         if (response.status === 202) {
           icon.classList.toggle('completo')
+          updateTask()
         }
       })
     }
@@ -31,6 +33,7 @@ if (task) {
             if (response.status === 200) {
               let taskItem = e.target.parentElement.parentElement
               taskItem.parentElement.removeChild(taskItem)
+              updateTask()
             }
           })
         }
