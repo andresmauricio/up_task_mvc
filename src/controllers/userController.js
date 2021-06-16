@@ -6,8 +6,12 @@ function formCreateAccount(req, res, next) {
 
 async function createAccount(req, res, next) {
   const { email, password } = req.body
-  const user = await User.create({ email, password })
-  res.send('success')
+  try {
+    const user = await User.create({ email, password })
+    res.redirect('/login')
+  } catch (error) {
+    res.render('create-account', { validates: error.erros })
+  }
 }
 
 module.exports = {
