@@ -23,5 +23,6 @@ module.exports = function () {
 
   router.post('/projects/:url', taskController.addTask)
   router.patch('/task/:id', taskController.updateStateTask)
+  router.delete('/task/:id', taskController.deleteTask)
   return router
 }

@@ -18,11 +18,17 @@ async function updateStateTask(req, res, next) {
   const { id } = req.params
   const task = await Task.findOne({ where: { id } })
 
-  task.state = task.state === 0 ? 1 : 0;
+  task.state = task.state === 0 ? 1 : 0
   const result = await task.save()
 
   if (!result) return next()
   res.status(202).send('update')
 }
 
-module.exports = { addTask, updateStateTask }
+async function deleteTask(req, res, next) {
+  const { id } = req.params
+  const task = await Task.destroy({ where: { id } })
+  res.send('task deleted')
+}
+
+module.exports = { addTask, updateStateTask, deleteTask }
