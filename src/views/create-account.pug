@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    include partials/header
+  body(class="login")
+    div(class="contenedor-formulario")
+      h1 Crea tu cuenta en UpTask 
+
+      form(class="caja caja-login" id="formulario" method="POST" action="/create-account")
+        div(class="campo")
+          label(for="email") E-mail
+          input(type="email" name="email" placeholder="Ingresa tu email") 
+        div(class="campo")
+          label(for="password") Password
+          input(type="password" name="password" placeholder="Ingresa tu password") 
+        div(class="campo enviar")
+          input(type="submit", value="Crear Cuenta" class="boton")
+        div(class="campo")
+          a(href="/login") Volver a iniciar 
