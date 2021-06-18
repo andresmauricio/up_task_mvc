@@ -1,17 +1,14 @@
 const passport = require('../config/passport')
 
-// function login(req, res, next) {
-//   passport.authenticate('local', {
-//     successRedirect: '/home',
-//     failureRedirect: '/login',
-//     failureFlash: true
-//   })
-// }
-
-exports.login = passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true
-})
-
-// module.exports = { login }
+function userAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) return next()
+  return res.redirect('/login')
+}
+module.exports = {
+  userAuthenticated,
+  login: passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login',
+    failureFlash: true
+  })
+}

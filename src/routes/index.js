@@ -7,25 +7,59 @@ const userController = require('../controllers/userController')
 const authController = require('../controllers/authController')
 
 module.exports = function () {
-  router.get('/home', proyectController.proyectHome)
-  router.get('/new-proyect', proyectController.formProyect)
+  router.get(
+    '/home',
+    authController.userAuthenticated,
+    proyectController.proyectHome
+  )
+  router.get(
+    '/new-proyect',
+    authController.userAuthenticated,
+    proyectController.formProyect
+  )
   router.post(
     '/new-proyect',
+    authController.userAuthenticated,
     body('nombre').not().isEmpty().trim().escape(),
     proyectController.newProyect
   )
   router.post(
     '/new-proyect/:id',
+    authController.userAuthenticated,
     body('nombre').not().isEmpty().trim().escape(),
     proyectController.updateProject
   )
-  router.get('/projects/:url', proyectController.projectByUrl)
-  router.get('/projects/edit/:id', proyectController.editProject)
-  router.delete('/projects/:url', proyectController.deleteProject)
+  router.get(
+    '/projects/:url',
+    authController.userAuthenticated,
+    proyectController.projectByUrl
+  )
+  router.get(
+    '/projects/edit/:id',
+    authController.userAuthenticated,
+    proyectController.editProject
+  )
+  router.delete(
+    '/projects/:url',
+    authController.userAuthenticated,
+    proyectController.deleteProject
+  )
 
-  router.post('/projects/:url', taskController.addTask)
-  router.patch('/task/:id', taskController.updateStateTask)
-  router.delete('/task/:id', taskController.deleteTask)
+  router.post(
+    '/projects/:url',
+    authController.userAuthenticated,
+    taskController.addTask
+  )
+  router.patch(
+    '/task/:id',
+    authController.userAuthenticated,
+    taskController.updateStateTask
+  )
+  router.delete(
+    '/task/:id',
+    authController.userAuthenticated,
+    taskController.deleteTask
+  )
 
   router.get('/create-account', userController.formCreateAccount)
   router.post('/create-account', userController.createAccount)
