@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const router = require('./routes')
 const sequelize = require('./config/database')
+const passport = require('./config/passport')
 const { vardump } = require('./helpers')
 const app = express()
 
@@ -25,6 +26,8 @@ app.use(
     saveUninitialized: false
   })
 )
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use((req, res, next) => {
   res.locals.vardump = vardump
