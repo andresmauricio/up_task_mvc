@@ -6,6 +6,9 @@ html(lang="es")
     div(class="contenedor-formulario")
       h1 Iniciar sesión en UpTask 
 
+      if error
+        p(class="alerta error") #{error}
+
       form(class="caja caja-login" id="formulario" method="POST" action="/login")
         div(class="campo")
           label(for="email") E-mail

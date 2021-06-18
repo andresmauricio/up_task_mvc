@@ -19,7 +19,8 @@ async function createAccount(req, res, next) {
 }
 
 function formLogin(req, res, next) {
-  res.render('login')
+  const { error } = res.locals.message
+  res.render('login', { error })
 }
 
 module.exports = {
