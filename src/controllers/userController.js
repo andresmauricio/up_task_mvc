@@ -18,7 +18,12 @@ async function createAccount(req, res, next) {
   }
 }
 
+function formLogin(req, res, next) {
+  res.render('login')
+}
+
 module.exports = {
   formCreateAccount,
-  createAccount
+  createAccount,
+  formLogin
 }

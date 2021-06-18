@@ -28,5 +28,7 @@ module.exports = function () {
 
   router.get('/create-account', userController.formCreateAccount)
   router.post('/create-account', userController.createAccount)
+
+  router.get('/login', userController.formLogin)
   return router
 }

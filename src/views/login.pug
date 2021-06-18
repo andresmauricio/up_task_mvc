@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    include partials/header
+  body(class="login")
+    div(class="contenedor-formulario")
+      h1 Iniciar sesión en UpTask 
+
+      form(class="caja caja-login" id="formulario" method="POST" action="/login")
+        div(class="campo")
+          label(for="email") E-mail
+          input(type="email" name="email" placeholder="Ingresa tu email" value= email) 
+        div(class="campo")
+          label(for="password") Password
+          input(type="password" name="password" placeholder="Ingresa tu password" value= password) 
+        div(class="campo enviar")
+          input(type="submit", value="Iniciar Sesión" class="boton")
+        div(class="campo")
+          a(href="/create-account") Regístrarte 
+  script(src="/dist/bundle.js") 
