@@ -10,7 +10,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.find({ where: { email } })
+        const user = await User.findOne({ where: { email } })
 
         if (!user.verifyPassword(password)) {
           return done(null, false, { message: 'Password error' })

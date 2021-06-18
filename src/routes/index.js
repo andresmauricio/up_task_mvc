@@ -4,6 +4,7 @@ const router = express.Router()
 const proyectController = require('../controllers/proyectsController')
 const taskController = require('../controllers/taskController')
 const userController = require('../controllers/userController')
+const authController = require('../controllers/authController')
 
 module.exports = function () {
   router.get('/home', proyectController.proyectHome)
@@ -30,5 +31,6 @@ module.exports = function () {
   router.post('/create-account', userController.createAccount)
 
   router.get('/login', userController.formLogin)
+  router.post('/login', authController.login)
   return router
 }
