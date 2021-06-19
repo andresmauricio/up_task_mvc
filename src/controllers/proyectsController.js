@@ -2,12 +2,14 @@ const Project = require('../models/Projects')
 const Task = require('../models/Tasks')
 
 async function proyectHome(req, res) {
-  const projects = await Project.findAll()
+  const userId = res.locals.user.id
+  const projects = await Project.findAll({ where: { userId } })
   res.render('index', { title: 'Home', projects })
 }
 
 async function formProyect(req, res) {
-  const projects = await Project.findAll()
+  const userId = res.locals.user.id
+  const projects = await Project.findAll({ where: { userId } })
   res.render('new-proyect', { title: 'Nuevo Proyectos', projects })
 }
 
@@ -20,15 +22,17 @@ async function newProyect(req, res) {
   if (errors.length) {
     res.render('new-proyect', { title: 'Nuevo Proyectos', errors })
   } else {
-    const project = await Project.create({ name: nombre })
+    const userId = res.locals.user.id
+    const project = await Project.create({ name: nombre, userId })
     res.redirect('/home')
   }
 }
 
 async function projectByUrl(req, res) {
-  const projects = await Project.findAll()
+  const userId = res.locals.user.id
+  const projects = await Project.findAll({ where: { userId } })
   const detailProject = await Project.findOne({
-    where: { url: req.params.url },
+    where: { url: req.params.url, userId }
   })
   const tasks = await Task.findAll({
     where: { projectId: detailProject.id },
@@ -38,7 +42,8 @@ async function projectByUrl(req, res) {
 }
 
 async function editProject(req, res) {
-  const projects = await Project.findAll()
+  const userId = res.locals.user.id
+  const projects = await Project.findAll({ where: { userId } })
   const detailProject = await Project.findOne({ where: { id: req.params.id } })
   res.render('new-proyect', {
     title: 'Editar Proyecto',
