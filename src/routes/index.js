@@ -67,5 +67,6 @@ module.exports = function () {
   router.get('/login', userController.formLogin)
   router.post('/login', authController.login)
   router.get('/logout', authController.logout)
+  router.get('/recovery-password', userController.formRecoveryPassword)
   return router
 }

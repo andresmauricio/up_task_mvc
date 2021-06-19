@@ -23,8 +23,13 @@ function formLogin(req, res, next) {
   res.render('login', { error })
 }
 
+function formRecoveryPassword(req, res, next) {
+  res.render('recovery-password')
+}
+
 module.exports = {
   formCreateAccount,
   createAccount,
-  formLogin
+  formLogin,
+  formRecoveryPassword
 }
