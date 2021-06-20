@@ -31,6 +31,12 @@ const User = db.define(
       validate: {
         notEmpty: { msg: 'Esté campo no puede ir vacio' }
       }
+    },
+    token: {
+      type: Sequelize.STRING
+    },
+    expired: {
+      type: Sequelize.STRING
     }
   },
   {
@@ -43,7 +49,7 @@ const User = db.define(
   }
 )
 
-User.prototype.verifyPassword = function(password) {
+User.prototype.verifyPassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
 

@@ -1,5 +1,6 @@
 const passport = require('../config/passport')
 const User = require('../models/User')
+const crypto = require('crypto')
 
 function userAuthenticated(req, res, next) {
   if (req.isAuthenticated()) return next()
@@ -18,6 +19,13 @@ async function sendToken(req, res, next) {
     req.flash('error', 'No existe esta cuenta')
     res.render('recovery-password', { validates: req.flash() })
   }
+  const token = crypto.randomBytes(20).toString('hex')
+  user.token = token
+  user.expired = Date.now() + 3600000
+  await user.save()
+
+  const resetUrl = `http://${req.headers.host}/recovery-password/${token}`
+  res.redirect('login')
 }
 
 module.exports = {
