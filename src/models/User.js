@@ -36,7 +36,7 @@ const User = db.define(
       type: Sequelize.STRING
     },
     expired: {
-      type: Sequelize.STRING
+      type: Sequelize.DATE
     }
   },
   {
@@ -44,7 +44,7 @@ const User = db.define(
       beforeCreate(user) {
         const salt = bcrypt.genSaltSync(10)
         user.password = bcrypt.hashSync(user.password, salt)
-      }
+      },
     }
   }
 )

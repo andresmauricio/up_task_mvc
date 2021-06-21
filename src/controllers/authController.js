@@ -1,6 +1,8 @@
 const passport = require('../config/passport')
 const User = require('../models/User')
 const crypto = require('crypto')
+const { Op } = require('sequelize')
+const bcrypt = require('bcrypt')
 
 function userAuthenticated(req, res, next) {
   if (req.isAuthenticated()) return next()
@@ -25,7 +27,7 @@ async function sendToken(req, res, next) {
   await user.save()
 
   const resetUrl = `http://${req.headers.host}/recovery-password/${token}`
-  res.redirect('recovery')
+  res.redirect(`/recovery-password/${token}`)
 }
 
 async function resetPassword(req, res, next) {
@@ -38,7 +40,31 @@ async function resetPassword(req, res, next) {
     res.redirect('/recovery-password')
   }
 
-  res.render('reset-password')
+  res.render('reset-password', { token })
+}
+
+async function updatePassword(req, res) {
+  const { token } = req.params
+  const user = await User.findOne({
+    where: {
+      token: token,
+      expired: {
+        [Op.gte]: Date.now()
+      }
+    }
+  })
+  if (!user) {
+    req.flash('error', 'No válido')
+    res.redirect('/recovery-password')
+  }
+  const salt = bcrypt.genSaltSync(10)
+  user.password = bcrypt.hashSync(req.body.password, salt)
+  user.token = null
+  user.expired = null
+
+  user.save()
+
+  res.redirect('/login')
 }
 
 module.exports = {
@@ -46,6 +72,7 @@ module.exports = {
   logout,
   sendToken,
   resetPassword,
+  updatePassword,
   login: passport.authenticate('local', {
     successRedirect: '/home',
     failureRedirect: '/login',
