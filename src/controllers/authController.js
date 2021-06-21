@@ -25,13 +25,27 @@ async function sendToken(req, res, next) {
   await user.save()
 
   const resetUrl = `http://${req.headers.host}/recovery-password/${token}`
-  res.redirect('login')
+  res.redirect('recovery')
+}
+
+async function resetPassword(req, res, next) {
+  const { token } = req.params
+  const user = await User.findOne({ where: { token } })
+  //const isValid = token === user?.token
+
+  if (!user) {
+    req.flash('error', 'No válido')
+    res.redirect('/recovery-password')
+  }
+
+  res.render('reset-password')
 }
 
 module.exports = {
   userAuthenticated,
   logout,
   sendToken,
+  resetPassword,
   login: passport.authenticate('local', {
     successRedirect: '/home',
     failureRedirect: '/login',
