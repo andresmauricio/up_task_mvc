@@ -46,3 +46,5 @@ app.use('/', router())
 app.listen(3001, () => {
   console.log('server running on http://localhost:3001')
 })
+
+// require('./helpers/email')
