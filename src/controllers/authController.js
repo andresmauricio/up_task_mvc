@@ -3,6 +3,7 @@ const User = require('../models/User')
 const crypto = require('crypto')
 const { Op } = require('sequelize')
 const bcrypt = require('bcrypt')
+const { sendEmail } = require('../helpers/email')
 
 function userAuthenticated(req, res, next) {
   if (req.isAuthenticated()) return next()
@@ -27,7 +28,14 @@ async function sendToken(req, res, next) {
   await user.save()
 
   const resetUrl = `http://${req.headers.host}/recovery-password/${token}`
-  res.redirect(`/recovery-password/${token}`)
+
+  await sendEmail({
+    user,
+    recovery_password: resetUrl,
+    subject: 'Recovery password',
+    file: 'recovery-password-email'
+  })
+  res.redirect(`/login`)
 }
 
 async function resetPassword(req, res, next) {
