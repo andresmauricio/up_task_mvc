@@ -1,4 +1,2 @@
-import Role from './Role';
-
-
-export default { Role };
+import './Role';
+import './User';
