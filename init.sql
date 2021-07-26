@@ -8,6 +8,10 @@ values
 ("USER", now(), now()),
 ("SUPERUSER", now(), now());
 
+-- show columns from projects;
+-- show columns from users;
+-- show columns from roles;
+
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('3180d599-679c-430e-b2c7-ca23ac0c010b', 'rjentges0@uiuc.edu', 'NhTBAdh', true, '2020-10-02', '2021-02-02', 1);
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('6a6f5662-a334-4060-85d2-1dd020bb5f87', 'tgero1@360.cn', 's5M2a1Au', true, '2021-03-12', '2021-01-21', 2);
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('44d643b3-b67f-4ebc-8a43-a922327c2848', 'skaesmans2@si.edu', 'rmCzW7gyYRX', false, '2021-04-14', '2021-03-24', 3);
