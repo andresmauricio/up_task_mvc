@@ -1,6 +1,8 @@
+drop database up_tasks;
+
 create database if not exists up_tasks;
 
-drop database up_tasks;
+use up_tasks;
 
 insert into roles (name, createdAt, updatedAt) 
 values 
