@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import Role from '../models/Role';
 import User from '../models/User';
 import { errorResponse, success } from '../helpers/response';
-import { v4 as uuidv4 } from 'uuid';
-import { RolesCodes } from '../schemas/types';
 import jwt from 'jsonwebtoken';
 import config from '../config/constanst';
 
