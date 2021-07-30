@@ -6,7 +6,7 @@
 import { Request, Response } from 'express';
 import Role from '../models/Role';
 import User from '../models/User';
-import { success } from '../helpers/response';
+import { errorResponse, success } from '../helpers/response';
 import { v4 as uuidv4 } from 'uuid';
 import { RolesCodes } from '../schemas/types';
 
@@ -35,5 +35,20 @@ export const create = async (req: Request, res: Response) => {
     if (user) success(req, res, 201, user);
   } catch (error) {
     console.error({ error });
+    showErrorsDatabase(req, res, error);
+  }
+};
+
+const showErrorsDatabase = (req, res, error) => {
+  const errors: [] = error?.errors;
+  if (error && Array.isArray(errors) && errors.length) {
+    const data = errors.map((e: any) => ({
+      message: e.message,
+      field: e.path,
+      type: e.type
+    }));
+    errorResponse(req, res, 400, data);
+  } else {
+    errorResponse(req, res, 500, error);
   }
 };
