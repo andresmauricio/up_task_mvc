@@ -9,6 +9,9 @@ import User from '../models/User';
 import { errorResponse, success } from '../helpers/response';
 import { v4 as uuidv4 } from 'uuid';
 import { RolesCodes } from '../schemas/types';
+import jwt from 'jsonwebtoken';
+import config from '../config/constanst';
+
 
 export const list = async (req: Request, res: Response) => {
   try {
@@ -32,7 +35,11 @@ export const create = async (req: Request, res: Response) => {
       is_active,
       roleId: RolesCodes.USER
     });
-    if (user) success(req, res, 201, user);
+    const token = jwt.sign(
+      { email, id, roleId: RolesCodes.USER },
+      config.secret_jwt
+    );
+    if (user) success(req, res, 201, { user, token });
   } catch (error) {
     console.error({ error });
     showErrorsDatabase(req, res, error);
