@@ -23,6 +23,10 @@ const User = db.define(
   }
 );
 
+User.prototype.comparePassword = function (passwordLogin) {
+  return bcrypt.compareSync(passwordLogin, this.password);
+};
+
 User.belongsTo(Role);
 User.hasMany(Project);
 export default User;

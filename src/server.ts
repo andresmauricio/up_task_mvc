@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import users from './routes/user.routes';
+import auth from './routes/auth.routes';
 import morgan from 'morgan';
 
 const app: Application = express();
@@ -17,5 +18,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 export default app;

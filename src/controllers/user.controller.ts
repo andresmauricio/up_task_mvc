@@ -1,8 +1,3 @@
-// listar usuarios;
-// crear usuarios;
-// eliminar usuarios;
-// actulizar usuarios;
-
 import { Request, Response } from 'express';
 import Role from '../models/Role';
 import User from '../models/User';
