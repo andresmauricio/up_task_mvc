@@ -27,10 +27,10 @@ export const create = async (req: Request, res: Response) => {
       password,
       id,
       is_active,
-      roleId: RolesCodes.USER
+      roleId: RolesCodes.SUPERUSER
     });
     const token = jwt.sign(
-      { email, id, roleId: RolesCodes.USER },
+      { email, id, roleId: RolesCodes.SUPERUSER },
       config.secret_jwt
     );
     if (user) success(req, res, 201, { user, token });
