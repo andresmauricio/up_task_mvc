@@ -12,7 +12,6 @@ import { RolesCodes } from '../schemas/types';
 import jwt from 'jsonwebtoken';
 import config from '../config/constanst';
 
-
 export const list = async (req: Request, res: Response) => {
   try {
     const users = await User.findAll({
@@ -43,6 +42,16 @@ export const create = async (req: Request, res: Response) => {
   } catch (error) {
     console.error({ error });
     showErrorsDatabase(req, res, error);
+  }
+};
+
+export const remove = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    await User.destroy({ where: { id } });
+    success(req, res, 200, null);
+  } catch (error) {
+    console.log({ error });
   }
 };
 
