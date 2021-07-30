@@ -32,3 +32,6 @@ insert into users (id, email, password, is_active, createdAt, updatedAt, roleId)
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('886895cc-f35f-4d76-aa00-5161505a4f96', 'sclewlowh@prweb.com', 'u2QRXdM', false, '2021-07-06', '2021-01-19', 3);
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('447de00a-ff96-4bea-830d-53a892aaae5a', 'tstalmani@boston.com', 'NDgYf0D', false, '2020-09-27', '2021-05-16', 1);
 insert into users (id, email, password, is_active, createdAt, updatedAt, roleId) values ('d0de6383-b9b6-4ebf-b2df-d1501896545d', 'rswornj@zdnet.com', 'y6amRB', true, '2021-05-02', '2021-02-21', 2);
+
+
+select user.id, user.email, role.name from users inner join roles on user.roleId = role.id; 

@@ -7,5 +7,5 @@ const Role = db.define('roles', {
   name: { type: DataTypes.STRING(60), allowNull: false }
 });
 
-Role.hasOne(User);
+//Role.hasOne(User);
 export default Role;
