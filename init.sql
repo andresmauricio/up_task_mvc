@@ -11,6 +11,7 @@ values
 ("SUPERUSER", now(), now());
 
 -- show columns from projects;
+-- show columns from tasks;
 -- show columns from users;
 -- show columns from roles;
 

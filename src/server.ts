@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import users from './routes/user.routes';
 import auth from './routes/auth.routes';
+import projects from './routes/projects.routes';
 import morgan from 'morgan';
 import passport from 'passport';
 import passportMiddleware from './middleware/passport';
@@ -23,5 +24,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/projects', projects);
 
 export default app;
