@@ -34,3 +34,16 @@ export const create = async (req: Request, res: Response) => {
     errorResponse(req, res, 404, null);
   }
 };
+
+export const update = async (req: Request, res: Response) => {
+  const { name, is_finish, id } = req.body;
+  try {
+    const project: any = await Project.findOne({ where: { id } });
+    project.name = name;
+    project.is_finish = is_finish ? true : false;
+    const projectUpdated = await project.save();
+    success(req, res, 200, projectUpdated);
+  } catch (error) {
+    errorResponse(req, res, 404, null);
+  }
+};
