@@ -21,7 +21,7 @@ export const create = async (req: Request, res: Response) => {
     name,
     url,
     userId,
-    is_finish: false
+    is_finish: false  
   };
   const project = await Project.create(newproject);
   success(req, res, 201, project);
